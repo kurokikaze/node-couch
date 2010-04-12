@@ -32,7 +32,14 @@ function cache_client(host) {
 	if (client) {
 		return client;
 	} else {
-    var uri = url.parse(host);
+
+        // Url.parse() sometimes don't split hostname and port when
+        // protocol is not specified
+        if (host.indexOf('http://') != 0) {
+            host = 'http://' + host;
+        }
+
+        var uri = url.parse(host);
 		return clients[host] = http.createClient(uri.port, uri.hostname);
 	}
 }
