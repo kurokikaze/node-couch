@@ -101,7 +101,7 @@ function _interact(verb, path, successStatus, options, host) {
 		});
 	});
 	
-	request.close()
+	request.end()
 	
 }
 
